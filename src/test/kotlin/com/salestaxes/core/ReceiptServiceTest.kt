@@ -1,4 +1,4 @@
-package com.salestaxes
+package com.salestaxes.core
 
 import io.mockk.every
 import io.mockk.mockk

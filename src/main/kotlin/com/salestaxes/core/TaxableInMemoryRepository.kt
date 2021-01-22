@@ -1,4 +1,4 @@
-package com.salestaxes
+package com.salestaxes.core
 
 class TaxableInMemoryRepository: TaxableRepository {
     private val taxableItems = listOf(

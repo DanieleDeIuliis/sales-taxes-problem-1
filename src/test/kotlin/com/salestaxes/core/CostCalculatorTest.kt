@@ -1,9 +1,8 @@
-package com.salestaxes
+package com.salestaxes.core
 
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class CostCalculatorTest {
