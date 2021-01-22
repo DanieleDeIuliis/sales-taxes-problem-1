@@ -1,12 +1,13 @@
 package com.salestaxes
 
-class TaxCalculator {
+
+class TaxCalculator(private val taxableRepository: TaxableRepository) {
     fun computeTaxAmount(item: Item): Double {
         var taxPercentage = 0
-        if(item.isImported()) {
+        if(item.isImported) {
             taxPercentage += 5
         }
-        if(item.isTaxable) {
+        if(taxableRepository.isTaxable(item.name)) {
             taxPercentage += 10
         }
         return taxPercentage.div(100.0) * item.price
