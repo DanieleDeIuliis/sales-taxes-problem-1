@@ -5,7 +5,7 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class ReceiptBuilderTest {
+class ReceiptServiceTest {
 
     private val taxCalculator: TaxCalculator = mockk()
     private val costCalculator: CostCalculator = mockk()
@@ -22,9 +22,8 @@ class ReceiptBuilderTest {
             Item("imported cigars", 40.0, true, true) to 1
         )
         val basket = Basket(items)
-        val receiptBuilder = ReceiptBuilder(basket, taxCalculator, costCalculator)
-        val receipt = receiptBuilder.buildReceipt()
-        assertThat(receipt).isEqualToIgnoringCase("""
+        val receiptService = ReceiptService(basket, taxCalculator, costCalculator)
+        assertThat(receiptService.buildReceipt()).isEqualToIgnoringCase("""
             |1 chocolate bar: 20.0
             |2 chair: 20.0
             |1 imported cigars: 20.0

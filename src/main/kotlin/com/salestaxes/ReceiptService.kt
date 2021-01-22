@@ -2,7 +2,7 @@ package com.salestaxes
 
 import java.lang.StringBuilder
 
-class ReceiptBuilder(
+class ReceiptService(
     private val basket: Basket,
     private val taxCalculator: TaxCalculator,
     private val costCalculator: CostCalculator
