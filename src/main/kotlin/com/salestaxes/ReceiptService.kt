@@ -6,12 +6,12 @@ class ReceiptService(
     private val taxCalculator: TaxCalculator,
     private val costCalculator: CostCalculator
 ) {
-    fun buildReceiptFor(basket: Basket): String {
+    fun buildReceiptFor(basket: Map<Item, Int>): String {
         val stringBuilder = StringBuilder()
-        basket.items.forEach { (item, quantity) -> stringBuilder.append("$quantity ${item.name}: ${costCalculator.computePriceAfterTaxOf(item)}\n")}
+        basket.forEach { (item, quantity) -> stringBuilder.append("$quantity ${item.name}: ${costCalculator.computePriceAfterTaxOf(item)}\n")}
         stringBuilder
-            .append("Sales taxes: ${taxCalculator.computeTotalTaxes(basket.items)}\n")
-            .append("Total: ${costCalculator.computeTotalCost(basket.items)}")
+            .append("Sales taxes: ${taxCalculator.computeTotalTaxes(basket)}\n")
+            .append("Total: ${costCalculator.computeTotalCost(basket)}")
         return stringBuilder.toString()
     }
 

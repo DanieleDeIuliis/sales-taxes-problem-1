@@ -16,12 +16,11 @@ class ReceiptServiceTest {
         every { taxCalculator.computeTaxAmount(any()) } returns 3.0
         every { costCalculator.computeTotalCost(any()) } returns 92.0
         every { costCalculator.computePriceAfterTaxOf(any()) } returns 20.0
-        val items = mapOf(
+        val basket = mapOf(
             Item("chocolate bar", 10.0, false) to 1,
             Item("chair", 30.0, true) to 2,
             Item("imported cigars", 40.0, true) to 1
         )
-        val basket = Basket(items)
         val receiptService = ReceiptService(taxCalculator, costCalculator)
         assertThat(receiptService.buildReceiptFor(basket)).isEqualToIgnoringCase("""
             |1 chocolate bar: 20.0
