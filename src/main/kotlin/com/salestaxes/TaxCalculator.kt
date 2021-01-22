@@ -12,4 +12,8 @@ class TaxCalculator {
         return taxPercentage.div(100.0) * item.price
     }
 
+    fun computeTotalTaxes(items: Map<Item, Int>): Double {
+        return items.map { (item, quantity) ->  computeTaxAmount(item) * quantity }.sum()
+    }
+
 }

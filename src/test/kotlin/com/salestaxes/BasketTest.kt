@@ -9,19 +9,6 @@ class BasketTest {
     private val taxCalculator: TaxCalculator = mockk()
 
     @Test
-    fun `compute total tax amount`() {
-        every { taxCalculator.computeTaxAmount(any()) } returns 3.0
-        val items = mapOf(
-            Item("chocolate bar", 10.0, false, false) to 1,
-            Item("chair", 30.0, false, true) to 1,
-            Item("cigars", 40.0, true, true) to 1
-        )
-        val basket = Basket(items, taxCalculator)
-        val taxesAmount: Double = basket.computeTotalTaxes()
-        assertThat(taxesAmount).isEqualTo(9.0)
-    }
-
-    @Test
     fun `compute cost after taxes of first item in the basket`() {
         every { taxCalculator.computeTaxAmount(any()) } returns 6.0
 
