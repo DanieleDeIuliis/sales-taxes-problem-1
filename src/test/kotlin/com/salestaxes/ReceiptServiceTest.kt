@@ -22,8 +22,8 @@ class ReceiptServiceTest {
             Item("imported cigars", 40.0, true) to 1
         )
         val basket = Basket(items)
-        val receiptService = ReceiptService(basket, taxCalculator, costCalculator)
-        assertThat(receiptService.buildReceipt()).isEqualToIgnoringCase("""
+        val receiptService = ReceiptService(taxCalculator, costCalculator)
+        assertThat(receiptService.buildReceiptFor(basket)).isEqualToIgnoringCase("""
             |1 chocolate bar: 20.0
             |2 chair: 20.0
             |1 imported cigars: 20.0

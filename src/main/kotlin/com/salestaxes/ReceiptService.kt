@@ -3,11 +3,10 @@ package com.salestaxes
 import java.lang.StringBuilder
 
 class ReceiptService(
-    private val basket: Basket,
     private val taxCalculator: TaxCalculator,
     private val costCalculator: CostCalculator
 ) {
-    fun buildReceipt(): String {
+    fun buildReceiptFor(basket: Basket): String {
         val stringBuilder = StringBuilder()
         basket.items.forEach { (item, quantity) -> stringBuilder.append("$quantity ${item.name}: ${costCalculator.computePriceAfterTaxOf(item)}\n")}
         stringBuilder
