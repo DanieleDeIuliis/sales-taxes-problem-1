@@ -1,14 +1,14 @@
 package com.salestaxes.core
 
 class TaxableInMemoryRepository: TaxableRepository {
-    private val taxableItems = listOf(
+    private val nonTaxableItems = listOf(
         "chocolate bar",
-        "chair",
+        "book",
         "cigars",
         "tv magazine"
     )
     override fun isTaxable(itemName: String): Boolean {
-        return taxableItems.contains(itemName)
+        return !nonTaxableItems.contains(itemName)
     }
 
 }

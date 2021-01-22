@@ -30,6 +30,14 @@ class InputParserTest {
     }
 
     @Test
+    fun `parse single input item with multiple words name`() {
+        val inputParser = InputParser()
+        val inputAsString = "2 special magical book at 12.99"
+        val firstItem = inputParser.parse(inputAsString).keys.first()
+        assertThat(firstItem.name).isEqualTo("special magical book")
+    }
+
+    @Test
     fun `parse single input imported item`() {
         val inputParser = InputParser()
         val inputAsString = "2 imported book at 12.99"

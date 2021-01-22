@@ -1,5 +1,8 @@
 package com.salestaxes.core
 
+import java.math.RoundingMode
+import kotlin.math.roundToInt
+
 
 class TaxCalculator(private val taxableRepository: TaxableRepository) {
     fun computeTaxAmount(item: Item): Double {
@@ -10,7 +13,7 @@ class TaxCalculator(private val taxableRepository: TaxableRepository) {
         if(taxableRepository.isTaxable(item.name)) {
             taxPercentage += 10
         }
-        return taxPercentage.div(100.0) * item.price
+        return (taxPercentage.div(100.0) * item.price * 20.0).roundToInt() / 20.0
     }
 
     fun computeTotalTaxes(items: Map<Item, Int>): Double {

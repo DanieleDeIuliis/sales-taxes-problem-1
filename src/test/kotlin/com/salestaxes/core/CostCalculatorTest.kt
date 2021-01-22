@@ -4,18 +4,19 @@ import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import java.math.BigDecimal
 
 class CostCalculatorTest {
     private val taxCalculator: TaxCalculator = mockk()
 
     @Test
     fun `compute cost after taxes of first item in the basket`() {
-        every { taxCalculator.computeTaxAmount(any()) } returns 6.0
+        every { taxCalculator.computeTaxAmount(any()) } returns 1.50
 
-        val firstItem = Item("cigars", 40.0, true)
+        val firstItem = Item("cigars", 14.99, false)
         val costCalculator = CostCalculator(taxCalculator)
-        val priceAfterTaxes: Double = costCalculator.computePriceAfterTaxOf(firstItem)
-        Assertions.assertThat(priceAfterTaxes).isEqualTo(46.0)
+        val priceAfterTaxes = costCalculator.computePriceAfterTaxOf(firstItem, 1)
+        Assertions.assertThat(priceAfterTaxes).isEqualTo(16.49.toBigDecimal())
     }
 
     @Test
@@ -29,8 +30,8 @@ class CostCalculatorTest {
             Item("chair", 30.0,  true) to 1
         )
         val costCalculator = CostCalculator(taxCalculator)
-        val totalPrice: Double = costCalculator.computeTotalCost(items)
-        Assertions.assertThat(totalPrice).isEqualTo(89.0)
+        val totalPrice= costCalculator.computeTotalCost(items)
+        Assertions.assertThat(totalPrice).isEqualTo(89.toBigDecimal().setScale(2))
     }
 
     @Test
@@ -44,7 +45,7 @@ class CostCalculatorTest {
         )
         val taxCalculator = taxCalculator
         val costCalculator = CostCalculator(taxCalculator)
-        val totalPrice: Double = costCalculator.computeTotalCost(items)
-        Assertions.assertThat(totalPrice).isEqualTo(102.0)
+        val totalPrice= costCalculator.computeTotalCost(items)
+        Assertions.assertThat(totalPrice).isEqualTo(102.toBigDecimal().setScale(2))
     }
 }

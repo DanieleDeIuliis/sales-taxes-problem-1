@@ -15,12 +15,12 @@ class InputParser {
     }
 
     private fun extractItemFromInputLine(line: String): Item {
-        val splitItem = line.split("at")
+        val splitItem = line.split("at ")
         val nameList = splitItem.first().trim().split(" ").filter { it.isNotEmpty() }
         if (nameList.isEmpty()) {
             throw BadInputException()
         }
-        val (rest, match) = nameList.partition { it.equals("imported") }
+        val (rest, match) = nameList.partition { it == "imported" }
         val isImported = rest.isNotEmpty()
         val name = match.joinToString(" ")
         val price = getPrice(splitItem.last())

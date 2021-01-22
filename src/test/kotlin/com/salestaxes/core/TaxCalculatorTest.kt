@@ -30,6 +30,16 @@ class TaxCalculatorTest {
     }
 
     @Test
+    fun `compute tax amount of taxable item rounded to nearest 05cent`() {
+        every { taxableRepository.isTaxable("1 music CD") } returns true
+        val item = Item("1 music CD", 14.99, false)
+        val taxCaculator = TaxCalculator(taxableRepository)
+        val percentageAmount = taxCaculator.computeTaxAmount(item)
+
+        assertThat(percentageAmount).isEqualTo(1.5)
+    }
+
+    @Test
     fun `compute tax amount of taxable imported item`() {
         every { taxableRepository.isTaxable("tv magazine") } returns true
         val item = Item("tv magazine", 10.0, true)
