@@ -16,6 +16,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
     testImplementation("net.wuerl.kotlin:assertj-core-kotlin:0.2.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+    testImplementation("io.mockk:mockk:1.10.0")
 }
 
 tasks.test {
