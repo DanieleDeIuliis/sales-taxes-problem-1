@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.salestaxes.BasketTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-22T11:48:15" hostname="FR-LAP00639.local" time="0.053">
+  <properties/>
+  <testcase name="XXX$sales_taxes_problem_1()" classname="com.salestaxes.BasketTest" time="0.053"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
