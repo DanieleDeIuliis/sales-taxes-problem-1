@@ -17,9 +17,9 @@ class ReceiptServiceTest {
         every { costCalculator.computeTotalCost(any()) } returns 92.0
         every { costCalculator.computePriceAfterTaxOf(any()) } returns 20.0
         val items = mapOf(
-            Item("chocolate bar", 10.0, false, false) to 1,
-            Item("chair", 30.0, false, true) to 2,
-            Item("imported cigars", 40.0, true, true) to 1
+            Item("chocolate bar", 10.0, false) to 1,
+            Item("chair", 30.0, true) to 2,
+            Item("imported cigars", 40.0, true) to 1
         )
         val basket = Basket(items)
         val receiptService = ReceiptService(basket, taxCalculator, costCalculator)

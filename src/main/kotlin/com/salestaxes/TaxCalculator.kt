@@ -3,7 +3,7 @@ package com.salestaxes
 class TaxCalculator {
     fun computeTaxAmount(item: Item): Double {
         var taxPercentage = 0
-        if(item.isImported) {
+        if(item.isImported()) {
             taxPercentage += 5
         }
         if(item.isTaxable) {
