@@ -12,7 +12,7 @@ class InputParserTest {
     fun `parse single input missing quantity`() {
         val inputParser = InputParser()
         val inputAsString = "book at 12.49"
-        assertThrows<BadInputException> { inputParser.extractItemFromInputLine(inputAsString) }
+        assertThrows<BadInputException> { inputParser.extractQuantity(inputAsString) }
     }
 
     @Test
