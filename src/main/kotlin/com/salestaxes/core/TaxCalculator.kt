@@ -13,6 +13,7 @@ class TaxCalculator(private val taxableRepository: TaxableRepository) {
         if(taxableRepository.isTaxable(item.name)) {
             taxPercentage += 10
         }
+        // poco leggibile
         return (taxPercentage.div(100.0) * item.price * 20.0).roundToInt() / 20.0
     }
 

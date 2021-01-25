@@ -3,7 +3,7 @@ package com.salestaxes.client
 import com.salestaxes.core.CostCalculator
 import com.salestaxes.core.ReceiptService
 import com.salestaxes.core.TaxCalculator
-import com.salestaxes.core.TaxableInMemoryRepository
+import com.salestaxes.store.TaxableInMemoryRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

@@ -1,5 +1,6 @@
 package com.salestaxes.core
 
+import com.salestaxes.store.TaxableInMemoryRepository
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
