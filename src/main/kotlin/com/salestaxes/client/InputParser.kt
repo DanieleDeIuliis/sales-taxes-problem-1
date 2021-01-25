@@ -6,18 +6,18 @@ class InputParser {
     fun parse(textualInput: String): Map<Item, Int> {
         val basket = mutableMapOf<Item, Int>()
         textualInput.split("\n").forEach { line ->
-            val splitLine = line.split(" ")
-            val quantity = extractQuantity(splitLine.first())
-            val item = extractItemFromInputLine(splitLine.subList(1,splitLine.size).joinToString(" "))
+            val quantity = extractQuantity(line)
+            val item = extractItemFromInputLine(line)
             basket[item] = quantity
         }
         return basket
     }
 
     //estrarre un extractor, sotto oppure un builder, sopra?
-    private fun extractItemFromInputLine(line: String): Item {
-        var isImported = line.contains("imported", ignoreCase = true)
-        val splitItem = line.split("at ")
+    fun extractItemFromInputLine(line: String): Item {
+        val lineWithoutQuantity = line.substring(line.indexOfFirst { it == ' ' })
+        var isImported = lineWithoutQuantity.contains("imported", ignoreCase = true)
+        val splitItem = lineWithoutQuantity.split("at ")
         var name = extractName(splitItem, isImported)
         val price = extractPrice(splitItem.last())
         return Item(name, price, isImported)
@@ -34,9 +34,9 @@ class InputParser {
         return name
     }
 
-    private fun extractQuantity(quantityAsString: String): Int {
+    fun extractQuantity(lineInput: String): Int {
         try {
-            return quantityAsString.trim().toInt()
+            return lineInput.split(" ").first().trim().toInt()
         } catch (e: NumberFormatException) {
             throw BadInputException()
         }
