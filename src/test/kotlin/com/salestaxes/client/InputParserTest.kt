@@ -60,17 +60,5 @@ class InputParserTest {
         assertThat(quantity).isEqualTo(2)
     }
 
-//    @Test
-//    fun `parse multiple lines input`() {
-//        val inputParser = InputParser()
-//        val inputAsString = """
-//            |2 book at 12.49
-//            |1 music CD at 14.99
-//            |1 chocolate bar at 0.85
-//        """.trimMargin()
-//        val basketParsed = inputParser.parse(inputAsString)
-//
-//        assertThat(basketParsed.size).isEqualTo(3)
-//    }
 }
 

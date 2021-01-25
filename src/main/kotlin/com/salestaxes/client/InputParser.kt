@@ -3,17 +3,7 @@ package com.salestaxes.client
 import com.salestaxes.core.Item
 
 class InputParser {
-    fun parse(textualInput: String): Map<Item, Int> {
-        val basket = mutableMapOf<Item, Int>()
-        textualInput.split("\n").forEach { line ->
-            val quantity = extractQuantity(line)
-            val item = extractItemFromInputLine(line)
-            basket[item] = quantity
-        }
-        return basket
-    }
 
-    //estrarre un extractor, sotto oppure un builder, sopra?
     fun extractItemFromInputLine(line: String): Item {
         val lineWithoutQuantity = line.substring(line.indexOfFirst { it == ' ' })
         var isImported = lineWithoutQuantity.contains("imported", ignoreCase = true)
@@ -21,6 +11,14 @@ class InputParser {
         var name = extractName(splitItem, isImported)
         val price = extractPrice(splitItem.last())
         return Item(name, price, isImported)
+    }
+
+    fun extractQuantity(lineInput: String): Int {
+        try {
+            return lineInput.split(" ").first().trim().toInt()
+        } catch (e: NumberFormatException) {
+            throw BadInputException()
+        }
     }
 
     private fun extractName(splitLine: List<String>, isImported: Boolean): String {
@@ -32,14 +30,6 @@ class InputParser {
             name = name.replace("imported", "",ignoreCase = true).trim()
         }
         return name
-    }
-
-    fun extractQuantity(lineInput: String): Int {
-        try {
-            return lineInput.split(" ").first().trim().toInt()
-        } catch (e: NumberFormatException) {
-            throw BadInputException()
-        }
     }
 
     private fun extractPrice(textualPrice: String): Double {

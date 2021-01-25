@@ -16,10 +16,13 @@ class AcceptanceTest {
             |1 chocolate bar at 0.85
         """.trimMargin()
         val inputParser = InputParser()
+        val basketBuilder = BasketBuilder(inputParser)
         val taxCalculator = TaxCalculator(TaxableInMemoryRepository())
         val invoiceService = ReceiptService(taxCalculator, CostCalculator(taxCalculator))
-        val clientOrchestrator = ClientOrchestrator(textualInput, inputParser, invoiceService)
+        val clientOrchestrator = ClientOrchestrator(textualInput, basketBuilder, invoiceService)
+
         val receipt = clientOrchestrator.computeReceipt()
+
         assertThat(receipt).isEqualTo("""
             |2 book: 24.98
             |1 music CD: 16.49
