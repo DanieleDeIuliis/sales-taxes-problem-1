@@ -1,8 +1,8 @@
 package com.salestaxes
 
-class Console {
+class Console(private val outputParser: OutputParser) {
     fun printProcessedElements(basket: Basket) {
-        TODO("Not yet implemented")
+        println(outputParser.parseBasket(basket))
     }
 
 }

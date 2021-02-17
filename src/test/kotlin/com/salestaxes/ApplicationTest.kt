@@ -7,7 +7,7 @@ class ApplicationTest {
 
     val inputParser: InputParser = InputParser()
     val taxService: TaxService = TaxService(TaxCalculator(TaxableItemRepository()))
-    val console: Console = Console()
+    val console: Console = Console(OutputParser())
 
     @Test
     fun `XXX`() {
