@@ -6,7 +6,13 @@ class TaxService(private val taxCalculator: TaxCalculator) {
             val tax = taxCalculator.computeTaxFor(item)
             BasketItem(item.name, item.isImported, item.quantity,(item.price + tax) * item.quantity, tax * item.quantity)
         }
-        return Basket(basketItems)
+        return Basket(basketItems, computeTotalCost(basketItems), computeTotalTaxes(basketItems))
     }
+
+    private fun computeTotalTaxes(basketItems: List<BasketItem>) =
+        basketItems.map(BasketItem::totalTaxAmount).sum()
+
+    private fun computeTotalCost(basketItems: List<BasketItem>) =
+        basketItems.map(BasketItem::grossPrice).sum()
 
 }

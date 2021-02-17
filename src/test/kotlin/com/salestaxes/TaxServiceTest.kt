@@ -68,5 +68,17 @@ class TaxServiceTest {
 
         assertThat(basketItem.grossPrice).isEqualTo(31.50)
     }
+
+    @Test
+    fun `creates a basket with one item having the proper total cost`() {
+        every { taxCalculator.computeTaxFor(any()) } returns 5.25
+        val aBook = Item("book", true, 10.50, 3)
+        val items = listOf(aBook)
+        val taxService = TaxService(taxCalculator = taxCalculator)
+
+        val basket = taxService.computeTax(items)
+
+        assertThat(basket.totalPrice).isEqualTo(47.25)
+    }
 }
 

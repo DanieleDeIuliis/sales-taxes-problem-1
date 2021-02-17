@@ -12,7 +12,7 @@ class ConsoleTest {
     fun `call outputParser when console prints`() {
         val console = Console(outputParser = outputParser)
 
-        val basket = Basket(listOf(BasketItem("book", false, 2, 10.00, 0.00)))
+        val basket = Basket(listOf(BasketItem("book", false, 2, 10.00, 0.00)), 10.00, 0.00)
         console.printProcessedElements(basket)
 
         verify { outputParser.parseBasket(basket) }
